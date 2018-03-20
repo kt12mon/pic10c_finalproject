@@ -8,7 +8,6 @@ Dice_roll::Dice_roll() {
 }
 
 void Dice_roll::roll() {
-	srand(time(0));
 	int D1 = rand() % 7;
 	int D2 = rand() % 7;
 	total_roll = D1 + D2;

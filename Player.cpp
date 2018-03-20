@@ -130,8 +130,8 @@ bool Player::in_jail_rules(Dice_roll roll) {
 }
 
 void Player::print_table() {
-	for (int i = 0; i < 40; i++) {
-		std::cout << i+1 << ". " << game_record[i].first << " was landed on " << game_record[i].second << " times." << std::endl;
+	for (auto it = game_record.begin(); it != game_record.end(); ++it) {
+		std::cout << it->first +1 << ". " << it->second.first << " was landed on " << it->second.second << " times." << std::endl;
 	}
 }
 
@@ -139,7 +139,7 @@ void Player::export_table() {
 	std::ofstream fout;
 	fout.open("Data.txt");
 	fout << "SpotNum" << "\t" << "SpotName" << "\t" << "TimesLand" << std::endl;
-	for (int i = 0; i < 40; i++)
-		fout << i + 1 << "\t" << game_record[i].first << "\t" << game_record[i].second << std::endl;
+	for (auto it = game_record.begin(); it != game_record.end(); ++it)
+		fout << it->first +1<< "\t" << it->second.first << "\t" << it->second.second << std::endl;
 	fout.close();
 }

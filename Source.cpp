@@ -1,5 +1,7 @@
 #include<iostream>
 #include "Player.h"
+#include<cstdlib>
+#include<ctime>
 
 
 //OUR DICE FUNCTION. "ROLLS" TWO NUMBERS 
@@ -38,6 +40,7 @@ void taketurn(Player& P1) {
 }
 
 int main() {
+	srand(time(0));
 	int simul_type(0);
 	int num_of_turns(0);
 	std::string response;
