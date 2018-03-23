@@ -7,6 +7,7 @@ class Monopoly {
 public:
 	Monopoly();
 	Monopoly(int x, int y);
+	virtual ~Monopoly() = default;
 	void set_decks();
 	void set_record();
 
