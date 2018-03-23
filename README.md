@@ -2,11 +2,15 @@
 Monte Carlo Simulation of Monopoly:
 
 Class Concepts used:
-STL Containers: Unordered set for efficient data storage, access and editting.
+STL Containers: Map for efficient data storage, access and editting.
 
 Iterators: to navigate through STL Container
 
 Algorithms: Created own custom algorithms for specific needs. Used recursion and exit conditions.
+
+Generic Algorithms: Used generic algorithm random shuffle throughout the program
+
+Polymorphism: Created inheritence structure to run simulation.
 
 Official rules <http://www.hasbro.com/common/instruct/00009.pdf>
 
@@ -16,9 +20,9 @@ I have implemented the basic rules of Monopoly with a few exceptions:
 
 2. Jail is simulated with the rules of jail, however, there is no way to model a player's choice to pay the fee to get out of jail. We will thus assume a player will never pay to get out of jail and will stay until they are kicked out or fulfill the doubles condition. This is a sound assumption because it is established strategy to try to stay in jail as long as possible as the game further progresses.
 
-3. Chance and Community decks are drawn on a uniform chance model even though the rules state a drawn card goes back to the bottom of the deck. In a future implementation: a seperate chance/community class should be established to define a set order of cards and keep track of when the entire deck is drawn so a reshuffle can be executed. 
+3. Chance and Community decks are shuffled at the begining and then drawn in the order they are in thruout the game. No reshuffling happens even if all cards are drawn.
 
-This project's main components are concerned with 2 objectives: accuracy of simulation and runtime efficiency. Accuracy of simulation are described by the rules above. As for runtime efficiency, I have implemented the simulation, data storage, and data writing as close to O(n) as possible. Simulation is ran at O(n) via a for loop and number of iterations. Data collection is ran at O(1) time due to the use of the closest thing to a hash map, an unordered set. The process is described in the classes below.
+This project's main components are concerned with 2 objectives: accuracy of simulation and runtime efficiency. Accuracy of simulation are described by the rules above. As for runtime efficiency, I have implemented the simulation, data storage, and data writing as close to O(n) as possible. Simulation is ran at O(n) via a for loop and number of iterations. Data collection is ran at O(1) time due to the use of the closest thing to a hash map. The process is described in the classes below.
 
 Dice_roll class:
 Variables: 
@@ -37,19 +41,29 @@ position - tracks position on board that player is on
 in_jail - bool to track if player is in jail. Important for rules of jail since a player can be on the jail space but not in jail.
 double_count - tracks number of consecutive doubles player has rolled. Important for sending player to jail for rolling 3 consecutive doubles.
 doubles_attempted - tracks number of doubles attempted to roll while in jail. After 3, player is no longer in jail.
-game_record - unordered map that keeps track of spaces landed on by player. Records space number, space name, and times landed on.
 
 Functions:
 Player() - default constructor. initializes all values to defaul 0s.
 get_jail_status() - accessor to return in_jail
 get_position() - accessor to return position
-init_record() - initializes a clear player record. Requires monopolyboard.txt in directory
 move_n() - changes player position
 in_jail_rules() - function used to dictate how a player acts in jail
 roll_doubles_check() - function used to see if a player who rolled doubles, gets sent to jail.
-update_record() - updates record of player position in game_record
 print_table() - prints table to console
 export_table() - exports table as a txt file with tab as delimiter.
+
+Monopoly class:
+Variables:
+chance_drawn - tracks how many chance cards have been drawn
+community_drawn - tracks how many cchest cards have been drawn
+chance_deck - vector of pairs that make up chance deck
+community_deck - vector of pairs that make up cchest deck
+game_record - map to keep record of landed board.
+
+Functions:
+Monopoly() - constructor
+set_decks() - creates chance and community chest decks
+set_record() - creates game record
 
 Sample output:
 1. "Go" was landed on 1 times.
