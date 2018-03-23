@@ -2,6 +2,7 @@
 #include "Player.h"
 #include<cstdlib>
 #include<ctime>
+#include<vector>
 
 
 //OUR DICE FUNCTION. "ROLLS" TWO NUMBERS 
@@ -37,6 +38,7 @@ void taketurn(Player& P1) {
 			return;
 		}
 	}
+	
 }
 
 int main() {
@@ -45,7 +47,6 @@ int main() {
 	int num_of_turns(0);
 	std::string response;
 	Player player;
-	player.init_record();
 
 	std::cout << "Monte Carlo-esque simulation of Monopoly by Kevin Tran." << std::endl 
 			  << "Limitations and constraints are detailed in README." << std::endl << std::endl;
@@ -57,7 +58,7 @@ int main() {
 			  << "For details on rules and implementation of simulation refer to the README." << std::endl;
 
 	std::cout << "What kind of simulation would you like to run:" << std::endl
-		      << "1)Average Game 2)Central Limit Theorem 3)Custom Cases" << std::endl
+		      << "1)Average Game 2)Central Limit Theorem (10000 turns) 3)Custom Cases" << std::endl
 			  << "(Please select from 1, 2, 3)." << std::endl;
 
 	std::cin >> simul_type;
@@ -67,7 +68,7 @@ int main() {
 			taketurn(player);
 
 	if (simul_type == 2)
-		for (int i = 0; i < 150000; i++)
+		for (int i = 0; i < 10000; i++)
 			taketurn(player);
 
 	if (simul_type == 3) {
@@ -90,7 +91,7 @@ int main() {
 		player.print_table();
 	}
 
-
+	
 
 	return 0;
 }

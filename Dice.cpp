@@ -1,6 +1,8 @@
 #include "Dice.h"
 #include <cstdlib>
 #include <ctime>
+#include <vector>
+#include <algorithm>
 
 Dice_roll::Dice_roll() {
 	total_roll = 0;
@@ -8,8 +10,10 @@ Dice_roll::Dice_roll() {
 }
 
 void Dice_roll::roll() {
-	int D1 = rand() % 7;
-	int D2 = rand() % 7;
+	std::vector<int> faces = { 1,1,2,2,3,3,4,4,5,5,6,6 };
+	std::random_shuffle(faces.begin(), faces.end());
+	int D1 = faces[0];
+	int D2 = faces[1];
 	total_roll = D1 + D2;
 	doubles_rolled = (D1 == D2);
 }

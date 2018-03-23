@@ -1,6 +1,13 @@
 # pic10c_finalproject
 Monte Carlo Simulation of Monopoly:
 
+Class Concepts used:
+STL Containers: Unordered set for efficient data storage, access and editting.
+
+Iterators: to navigate through STL Container
+
+Algorithms: Created own custom algorithms for specific needs. Used recursion and exit conditions.
+
 Official rules <http://www.hasbro.com/common/instruct/00009.pdf>
 
 I have implemented the basic rules of Monopoly with a few exceptions:

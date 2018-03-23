@@ -1,5 +1,4 @@
 
-
 class Dice_roll {
 public:
 	Dice_roll();

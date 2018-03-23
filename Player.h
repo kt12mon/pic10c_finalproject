@@ -1,14 +1,13 @@
-#include <unordered_map>
-#include <string>
-#include <utility>
+#include <map>
+#include "Monopoly.h"
 #include "Dice.h"
 
-class Player{
+class Player: public Monopoly{
 public:
 	Player();
 	bool get_jail_status();
 	int get_position();
-	void init_record(); //initaites a clear record
+	//void init_record(); //initaites a clear record
 	void move_n(int n); //moving function
 	bool in_jail_rules(Dice_roll roll);
 	bool roll_doubles_check(Dice_roll roll);
@@ -26,5 +25,5 @@ private:
 	bool in_jail;
 	int double_count;
 	int doubles_attempted;
-	std::unordered_map<int, std::pair<std::string, int>> game_record;
+	//std::map<int, std::pair<std::string, int>> game_record;
 };
